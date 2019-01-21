@@ -23,6 +23,10 @@
 
 @end
 
+typedef enum {
+    OrderByLatest, OrderByOldest
+} Sort;
+
 typedef NS_ENUM(NSUInteger, QBImagePickerMediaType) {
     QBImagePickerMediaTypeAny = 0,
     QBImagePickerMediaTypeImage,
@@ -47,5 +51,7 @@ typedef NS_ENUM(NSUInteger, QBImagePickerMediaType) {
 
 @property (nonatomic, assign) NSUInteger numberOfColumnsInPortrait;
 @property (nonatomic, assign) NSUInteger numberOfColumnsInLandscape;
+
+@property (nonatomic, assign) Sort sortOrder;
 
 @end

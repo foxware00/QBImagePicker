@@ -233,7 +233,13 @@ static CGSize CGSizeScale(CGSize size, CGFloat scale) {
 {
     if (self.assetCollection) {
         PHFetchOptions *options = [PHFetchOptions new];
-        
+
+        if (self.imagePickerController.sortOrder == OrderByLatest) {
+            options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
+        } else if (self.imagePickerController.sortOrder == OrderByOldest) {
+            options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:YES]];
+        }
+
         switch (self.imagePickerController.mediaType) {
             case QBImagePickerMediaTypeImage:
                 options.predicate = [NSPredicate predicateWithFormat:@"mediaType == %ld", PHAssetMediaTypeImage];
